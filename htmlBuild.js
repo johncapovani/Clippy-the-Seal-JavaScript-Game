@@ -34,15 +34,32 @@ function gameCanvasBuild() {
     let gameTitleLocation = document.getElementById('game-title')
     let gameCanvas = document.createElement('canvas')
     gameCanvas.setAttribute('id', 'game-canvas')
-    gameCanvas.style.backgroundColor = "white"
-    gameCanvas.style.display = "block"
-    gameCanvas.style.height = 400
-    gameCanvas.style.width = 640
-
+    gameCanvas.style.backgroundColor = "lightblue "
+    gameCanvas.style.height = 200
+    gameCanvas.style.width = 600
+    gameCanvas.style.display = 'block'
+    gameCanvas.style.marginLeft = 'auto'
+    gameCanvas.style.marginRight = 'auto'
 
     //style game canvas
     gameCanvas.style.boxShadow = '10px 10px 15px black'
     gameDivLocation.appendChild(gameCanvas)
+
+    //Add game instruction section paragraph
+
+    let instructionPara = document.createElement('p')
+    instructionPara.setAttribute('id', 'instructionPara')
+    let paraLocation = document.getElementById('game-div')
+    instructionPara.textContent = 'Use the Space or W keys to swim over the incoming bully sharks. The longer the bar is pressed, the higher the seal will swim. Sometimes, you may have to duck under an incoming bully. When this is needed, use the left shift or S key to avoid being clipped! We will see how long you can avoid being clipped for.'
+    paraLocation.append(instructionPara)
+    instructionPara.style.display = 'flex'
+    instructionPara.style.textAlign = 'center'
+    instructionPara.margin = 'auto'
+    instructionPara.style.border = '3px solid white'
+    instructionPara.style.padding = '10px'
+    instructionPara.style.justifyContent = 'center'
+    instructionPara.style.fontSize = '20px'
+    instructionPara.style.color = 'aqua'
 
     //Set properties of the body
     let body = document.getElementById('body')

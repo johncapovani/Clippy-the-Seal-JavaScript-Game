@@ -1,6 +1,8 @@
 //Wrap game launch script within page load event listner
 window.addEventListener("load", () => {
 
+
+
     //Call page build function which will build the canvas HTML
 
     gameCanvasBuild()
@@ -47,7 +49,7 @@ window.addEventListener("load", () => {
 
 
             this.dy = 0
-            this.jumpForce = 15
+            this.jumpForce = 10
             this.originalHeight = h
             this.grounded = false
             this.jumpTimer = 0
@@ -193,7 +195,7 @@ window.addEventListener("load", () => {
     //---------------------Start Function Start---------------------
     function start() {
         canvas.width = window.innerWidth - 100
-        canvas.height = window.innerHeight - 400
+        canvas.height = window.innerHeight - 600
 
         ctx.font = "20 px sans-serif"
 
@@ -213,14 +215,15 @@ window.addEventListener("load", () => {
 
     let initialSpawnTimer = 200
     let spawnTimer = initialSpawnTimer
-    
+
     function Update() {
 
         requestAnimationFrame(Update)
         //This clears the canvas to prevent it showing the same image
         ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-        spawnTimer--
+        spawnTimer--;
+
 
         if (spawnTimer <= 0) {
 
@@ -228,22 +231,37 @@ window.addEventListener("load", () => {
             console.log(obstacles)
             spawnTimer = initialSpawnTimer - gameSpeed * 8
 
+
+            if (spawnTimer < 60) {
+
+                //was 60 before
+                spawnTimer = 60
+
+            }
         }
 
-        if (spawnTimer < 60) {
+        for (let i = 0; i < obstacles.length; i++) {
 
-            spawnTimer = 60
+            let o = obstacles[i]
 
+            o.Update()
 
         }
+
 
         player.Animate()
-
+        gameSpeed += 0.009
 
     }
 
     start()
 
+    //Auto resize event listner
+    addEventListener('resize', (event) => {
+        canvas.width = window.innerWidth - 100
+        canvas.height = window.innerHeight - 600
+
+    });
 
 
 })
