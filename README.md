@@ -11,7 +11,11 @@ The objective of this game is to avoid being "clipped" by one of the sharks. Sea
 
 Development Notes / Thought process behind creating the application:
 
+In order to create the HTML using DOM I watched multiple youtube videos, referenced W3 Schools, and other websites to learn.
 
+For the movement and animation of the game I referenced this youtube video and modified the images, styling, and other functionality. https://www.youtube.com/watch?v=LprJOTU37hk
+
+Main Takeaways: This activity was helpful in identifying the fundamentals that I do and do not grasp in regards to JavaScript. I plan on diving deeper into asyn await functions, canvas design, and classes.
 
 
 

@@ -15,7 +15,9 @@ window.addEventListener("load", () => {
 
 
     let score
+    let scoreText
     let maxscore
+    let maxscoreText
     let player
     let gravity
     let obstacles = []
@@ -166,7 +168,34 @@ window.addEventListener("load", () => {
 
 
     //---------------------Shark Class End---------------------
+    //---------------------Game Text Class Start---------------------
+    class Text {
 
+        constructor(t, x, y, a, c, s) {
+
+            this.t = t
+            this.x = x
+            this.x = y
+            this.a = a
+            this.c = c
+            this.s = s
+        }
+
+        Draw() {
+            ctx.beginPath()
+            ctx.fillstyle = this.c
+            ctx.font = this.s + "px sans-serif"
+            ctx.textAlign = this.a
+            ctx.fillText(this.t, 10, 30);
+            ctx.closePath()
+
+        }
+
+
+
+    }
+
+    //---------------------Game Text Class End---------------------
     //---------------------Spawn Shark Function Start---------------------
 
     function spawnSharks() {
@@ -195,7 +224,7 @@ window.addEventListener("load", () => {
     //---------------------Start Function Start---------------------
     function start() {
         canvas.width = window.innerWidth - 100
-        canvas.height = window.innerHeight - 600
+        canvas.height = window.innerHeight - 400
 
         ctx.font = "20 px sans-serif"
 
@@ -206,6 +235,8 @@ window.addEventListener("load", () => {
         maxscore = 0
 
         player = new ClippyTheSeal(50, canvas.height - 150, 200, 50, '#FF5858')
+
+        scoreText = new Text("Score " + score, 10, '50', "left", '#212121', "20")
 
         requestAnimationFrame(Update)
 
@@ -228,7 +259,7 @@ window.addEventListener("load", () => {
         if (spawnTimer <= 0) {
 
             spawnSharks()
-            console.log(obstacles)
+
             spawnTimer = initialSpawnTimer - gameSpeed * 8
 
 
@@ -244,13 +275,36 @@ window.addEventListener("load", () => {
 
             let o = obstacles[i]
 
+            if (o.x + o.width < 0) {
+                obstacles.splice(i, 1)
+
+            }
+
+            if (player.x - 100 < o.x + o.w && player.x + player.w - 100 > o.x && player.y < o.y + o.h && player.y + player.h > o.y) {
+
+                obstacles = []
+                score = 0
+                spawnTimer = initialSpawnTimer
+                gameSpeed = 3
+                ctx.fillText("You've been Clipped!", 100, 100);
+            }
+
             o.Update()
 
         }
 
 
         player.Animate()
+
+
+        score++
+        scoreText.t = "Score: " + score
+        scoreText.Draw()
+        console.log(scoreText.t)
+
         gameSpeed += 0.009
+
+
 
     }
 
@@ -259,7 +313,7 @@ window.addEventListener("load", () => {
     //Auto resize event listner
     addEventListener('resize', (event) => {
         canvas.width = window.innerWidth - 100
-        canvas.height = window.innerHeight - 600
+        canvas.height = window.innerHeight - 400
 
     });
 
