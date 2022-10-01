@@ -35,6 +35,10 @@ function gameCanvasBuild() {
     let gameCanvas = document.createElement('canvas')
     gameCanvas.setAttribute('id', 'game-canvas')
     gameCanvas.style.backgroundColor = "white"
+    gameCanvas.style.display = "block"
+    gameCanvas.style.height = 400
+    gameCanvas.style.width = 640
+
 
     //style game canvas
     gameCanvas.style.boxShadow = '10px 10px 15px black'
@@ -44,7 +48,7 @@ function gameCanvasBuild() {
     let body = document.getElementById('body')
     body.style.display = 'flex'
     body.style.justifyContent = 'center'
-    body.style.height = '100vh'
+    body.style.height = '90vh'
     body.style.backgroundColor = '#5484A5'
 
 
