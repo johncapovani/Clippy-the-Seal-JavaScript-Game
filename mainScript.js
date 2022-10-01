@@ -186,7 +186,7 @@ window.addEventListener("load", () => {
             ctx.fillstyle = this.c
             ctx.font = this.s + "px sans-serif"
             ctx.textAlign = this.a
-            ctx.fillText(this.t, 10, 30);
+            ctx.fillText(this.t, this.x, 50);
             ctx.closePath()
 
         }
@@ -237,6 +237,7 @@ window.addEventListener("load", () => {
         player = new ClippyTheSeal(50, canvas.height - 150, 200, 50, '#FF5858')
 
         scoreText = new Text("Score " + score, 10, '50', "left", '#212121', "20")
+        maxscoreText = new Text("Highscore: " + maxscore, 100, 500, "right", "#212121", "20")
 
         requestAnimationFrame(Update)
 
@@ -300,7 +301,14 @@ window.addEventListener("load", () => {
         score++
         scoreText.t = "Score: " + score
         scoreText.Draw()
-        console.log(scoreText.t)
+
+if (score > maxscore){
+
+    maxscore = score
+    maxscoreText.t = "Your Max Score: " + maxscore
+}
+
+        maxscoreText.Draw()
 
         gameSpeed += 0.009
 
